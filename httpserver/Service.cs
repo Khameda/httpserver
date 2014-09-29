@@ -15,6 +15,7 @@ namespace httpserver
         {
             this.connectionSocket = connectionSocket;
         }
+        
 
         internal void SocketHandler()
         {
