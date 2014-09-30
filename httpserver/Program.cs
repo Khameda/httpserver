@@ -9,12 +9,12 @@ namespace httpserver
     class Program
     {
 
-        //private static Start StartChat;
+       private static HttpServer StartHosting;
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello http server");
-            //StartChat = new Start();
-            //StartChat.StartServer();
+           // Console.WriteLine("Hello http server");
+            StartHosting = new HttpServer();
+            StartHosting.StartServer();
 
             HttpServer server = new HttpServer();
             server.StartServer();

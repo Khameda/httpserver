@@ -10,31 +10,23 @@ namespace httpserver
 {
     class Service
     {
-        private Socket connectionSocket;
-        public Service(Socket connectionSocket)
+        private TcpClient connectionSocket;
+        public Service(TcpClient connectionSocket)
         {
             this.connectionSocket = connectionSocket;
         }
         
 
-        internal void SocketHandler()
+       public void SocketHandler()
         {
-            Stream ns = new NetworkStream(connectionSocket);
-            StreamReader sr = new StreamReader(ns);
-
-            //saves the lines read fromteh stream in a string variable and print it on the scren
-            string message = sr.ReadLine();
-            //Console.WriteLine(message);
-            while (message != null && message != "")
-            {
-                Console.WriteLine(message);
-                message = sr.ReadLine();
-            }
-            Console.ReadLine();     
-            
+            Stream ns = connectionSocket.GetStream();
+          //  StreamReader sr = new StreamReader(ns);
+            StreamWriter sw = new StreamWriter(ns);
+            sw.AutoFlush = true;
+           
+            sw.Write("<html><body>Hello Chrome</body></html>");
+            //sw.WriteLine("Printing many lines");
             connectionSocket.Close();
-            
-
 
         }
     }
