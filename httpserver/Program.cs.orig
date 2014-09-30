@@ -9,15 +9,18 @@ namespace httpserver
     class Program
     {
 
-       
+       private static HttpServer StartHosting;
         static void Main(string[] args)
         {
-            // Vi laver et nyt objekt af klassen Httpserver (server)   
-            HttpServer StartHosting = new HttpServer();
-            // Vi kalder metoden Startserver via vores objekt server
+           // Console.WriteLine("Hello http server");
+            StartHosting = new HttpServer();
             StartHosting.StartServer();
+<<<<<<< Updated upstream
 
-            Console.Read();
+            HttpServer server = new HttpServer();
+            server.StartServer();
+=======
+>>>>>>> Stashed changes
         }
     }
 }
