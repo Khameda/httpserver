@@ -35,21 +35,32 @@ namespace httpserver
             sw.Write("HTTP/1.0 200 OK\r\n");
             sw.Write("\r\n");
             sw.Write("Hello world");
-
-
-           
-          
-
-                //SendREFile(RootCatalog, sw);
+             
+            SendREFile(sw, sr);
                 //GetREfilePath();
+            ns.Close();
+            connectionSocket.Close();
+        }
 
 
-         
+        //private string GetREfilePath(string message)
+        //{
+        //    string[] adskil = message.Split(' ');
+            
+        //    string result = adskil[1];
 
-                // message det vi skriver i browseren i dette tilfælde localhost:8888/arg --> sr.Readline læser alle request.
-                //adskil opdeler message ved hjælp af indbygget Split metode.
-                // sw.writeline udskriver element '1'  i browseren i dette tilfælde /arg
 
+        //    return result;
+        //}
+
+        /// message det vi skriver i browseren i dette tilfælde localhost:8888/arg --> sr.Readline læser alle request.
+        ///adskil opdeler message ved hjælp af indbygget Split metode.
+        /// sw.writeline udskriver element '1'  i browseren i dette tilfælde /arg
+
+        /// element 1 hedder Entity body
+
+        private void SendREFile(StreamWriter sw, StreamReader sr)
+        {
             try
             {
                 string message = sr.ReadLine();
@@ -78,42 +89,7 @@ namespace httpserver
             {
                 Console.WriteLine(BadMessage);
             }
-
-
-
-
-
-
-
-            ns.Close();
-            connectionSocket.Close();
         }
-
-
-        //private string GetREfilePath(string message)
-        //{
-        //    string[] adskil = message.Split(' ');
-            
-        //    string result = adskil[1];
-
-
-        //    return result;
-        //}
-
-      
-
-        //private void SendREFile(string Rootcatalog, StreamWriter sw)
-        //{
-        //    using (FileStream fs = File.OpenRead(Rootcatalog))
-        //    {
-        //        byte[] b = new byte[1024];
-        //        UTF8Encoding temp = new UTF8Encoding(true);
-        //        while (fs.Read(b, 0, b.Length) > 0)
-        //        {
-        //            sw.WriteLine(temp.GetString(b));
-        //        }
-        //    }
-        //}
         
     }
 }
