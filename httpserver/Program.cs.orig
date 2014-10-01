@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+<<<<<<< HEAD
+using System.Text.RegularExpressions;
+=======
+>>>>>>> origin/master
+using System.Threading.Tasks;
+using System.Net.Sockets;
+namespace httpserver
+{
+    class Program
+    {
+
+       
+        static void Main(string[] args)
+        {
+<<<<<<< HEAD
+            //
+           
+            // Vi laver et nyt objekt af klassen Httpserver (server)   
+            HttpServer server = new HttpServer();
+            // Vi kalder metoden Startserver via vores objekt server
+            server.StartServer();
+
+            Console.Read();
+
+            
+=======
+            // Vi laver et nyt objekt af klassen Httpserver (server)   
+            HttpServer StartHosting = new HttpServer();
+            // Vi kalder metoden Startserver via vores objekt server
+            StartHosting.StartServer();
+
+            Console.Read();
+>>>>>>> origin/master
+        }
+    }
+}
