@@ -23,26 +23,31 @@ namespace httpserver
         {
             this.connectionSocket = connectionSocket;  
         }
+
+        public List<Task> ServerTasks = new List<Task>();
+
+ 
+        
+
         public void SocketService()
         {
-              
+
+            Task task = Task.Run(() => (connectionSocket));
             /// Netværks stream for vores connectede client som kan bruges til at læse eller skrive til eller fra
             Stream ns = connectionSocket.GetStream();
             StreamReader sr = new StreamReader(ns);
             StreamWriter sw = new StreamWriter(ns);
             sw.AutoFlush = true;
 
-            ///Vores "status line"
-            sw.Write("HTTP/1.0 200 OK\r\n");
-            /// "Blank lines"
-            sw.Write("\r\n");
-            /// "Entity body"
-            sw.Write("Hello world");
+      
+        
 
 
             /// Her kalder vi vores metode SendREfile ved brug af Stream streamReader StreamWriter
-            SendREFile(sw, sr);                                   
-                //GetREfilePath();    
+            SendREFile(sw, sr);
+            GetREfilePath(, sw);
+
+            task.Start();
             
             /// Vi lukker vores stream    
             ns.Close();
@@ -51,15 +56,25 @@ namespace httpserver
         }
 
 
-        //private string GetREfilePath(string message)
-        //{
-        //    string[] adskil = message.Split(' ');
-            
-        //    string result = adskil[1];
+     
 
+        private string GetREfilePath(string message, StreamWriter sw)
+        {
+            Task task = Task.Run(() => (connectionSocket));
+            string ms = message;
+            ///Vores "status line"
+            sw.Write("HTTP/1.0 200 OK\r\n");
+            /// "Blank lines"
+            sw.Write("\r\n");
+            /// "Entity body"
+            sw.Write("Hello world");
 
-        //    return result;
-        //}
+            string[] adskil = ms.Split(' ');
+            string result = adskil[1];
+            return result;
+            task.Start();
+
+        }
 
         /// message det vi skriver i browseren i dette tilfælde localhost:8888/arg --> sr.Readline læser alle request.
         ///adskil opdeler message ved hjælp af indbygget Split metode.

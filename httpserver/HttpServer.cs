@@ -13,7 +13,9 @@ namespace httpserver
         /// vi laver en statisk port og navngiver den DefaultPort
         public static readonly int DefaultPort = 8888;
 
+        private List<Task> ServerTask = new List<Task>(); 
 
+        
         public void StartServer()
         {
             /// Vi laver en server listner og kalder den serverSocket
