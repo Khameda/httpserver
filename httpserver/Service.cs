@@ -26,19 +26,27 @@ namespace httpserver
         public void SocketService()
         {
               
-            //network stream for the connected client; to read from or write to
+            /// Netværks stream for vores connectede client som kan bruges til at læse eller skrive til eller fra
             Stream ns = connectionSocket.GetStream();
             StreamReader sr = new StreamReader(ns);
             StreamWriter sw = new StreamWriter(ns);
             sw.AutoFlush = true;
 
+            ///Vores "status line"
             sw.Write("HTTP/1.0 200 OK\r\n");
+            /// "Blank lines"
             sw.Write("\r\n");
+            /// "Entity body"
             sw.Write("Hello world");
-             
-            SendREFile(sw, sr);
-                //GetREfilePath();
+
+
+            /// Her kalder vi vores metode SendREfile ved brug af Stream streamReader StreamWriter
+            SendREFile(sw, sr);                                   
+                //GetREfilePath();    
+            
+            /// Vi lukker vores stream    
             ns.Close();
+            /// vi lukker client connection
             connectionSocket.Close();
         }
 
@@ -56,7 +64,6 @@ namespace httpserver
         /// message det vi skriver i browseren i dette tilfælde localhost:8888/arg --> sr.Readline læser alle request.
         ///adskil opdeler message ved hjælp af indbygget Split metode.
         /// sw.writeline udskriver element '1'  i browseren i dette tilfælde /arg
-
         /// element 1 hedder Entity body
 
         private void SendREFile(StreamWriter sw, StreamReader sr)

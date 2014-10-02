@@ -14,10 +14,10 @@ namespace httpserver
         static void Main(string[] args)
         {
             //
-           
-            // Vi laver et nyt objekt af klassen Httpserver (server)   
+
+            /// Vi laver et nyt objekt af klassen Httpserver (server)   
             HttpServer server = new HttpServer();
-            // Vi kalder metoden Startserver via vores objekt server
+            /// Vi kalder metoden Startserver via vores objekt server
             server.StartServer();
 
             Console.Read();
