@@ -34,7 +34,7 @@ namespace httpserver
             while (_running)
             {
                 
-
+                //
                 /// vi laver en tcpclient objekt og fortæller at vores listner at den skal acceptere forbindelsen
                 TcpClient connectionSocket = serverSocket.AcceptTcpClient();
                 /// Den giver sig selv
