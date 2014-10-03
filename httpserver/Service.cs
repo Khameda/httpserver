@@ -29,11 +29,11 @@ namespace httpserver
  
         
 
-        public void SocketService()
+        public void SocketService(TcpClient socket)
         {
 
-           // Task task = Task.Run(() => (connectionSocket));
-         //   Task.Run(task);
+           
+           
             /// Netværks stream for vores connectede client som kan bruges til at læse eller skrive til eller fra
             Stream ns = connectionSocket.GetStream();
             StreamReader sr = new StreamReader(ns);
