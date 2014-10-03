@@ -24,7 +24,7 @@ namespace httpserver
             this.connectionSocket = connectionSocket;  
         }
 
-        public List<Task> ServerTasks = new List<Task>();
+       //public List<Task> ServerTasks = new List<Task>();
 
  
         
@@ -32,47 +32,49 @@ namespace httpserver
         public void SocketService()
         {
 
-            Task task = Task.Run(() => (connectionSocket));
+            //Task task = Task.Run(() => (connectionSocket));
+         //   Task.Run(task);
             /// Netværks stream for vores connectede client som kan bruges til at læse eller skrive til eller fra
             Stream ns = connectionSocket.GetStream();
             StreamReader sr = new StreamReader(ns);
             StreamWriter sw = new StreamWriter(ns);
             sw.AutoFlush = true;
 
-      
-        
-
-
-            /// Her kalder vi vores metode SendREfile ved brug af Stream streamReader StreamWriter
-            SendREFile(sw, sr);
-            GetREfilePath(, sw);
-
-            task.Start();
-            
-            /// Vi lukker vores stream    
-            ns.Close();
-            /// vi lukker client connection
-            connectionSocket.Close();
-        }
-
-
-     
-
-        private string GetREfilePath(string message, StreamWriter sw)
-        {
-            Task task = Task.Run(() => (connectionSocket));
-            string ms = message;
-            ///Vores "status line"
             sw.Write("HTTP/1.0 200 OK\r\n");
             /// "Blank lines"
             sw.Write("\r\n");
             /// "Entity body"
             sw.Write("Hello world");
+            /// Her kalder vi vores metode SendREfile ved brug af Stream streamReader StreamWriter           
+            string m = sr.ReadLine();
+            string filename = GetREfilePath(m);
 
-            string[] adskil = ms.Split(' ');
-            string result = adskil[1];
-            return result;
-            task.Start();
+            SendREFile(filename, sw);
+
+      
+
+     
+           
+            /// Vi lukker vores stream    
+            ns.Close();
+            /// vi lukker client connection
+            connectionSocket.Close();
+            
+        }
+
+
+     
+
+        private string GetREfilePath(string message)
+        {
+            //Task task = Task.Run(() => (connectionSocket));               
+            if (true)
+            {                          
+                string[] adskil = message.Split(' ');                
+                return RootCatalog + adskil[1];
+            }
+        
+            // task.Start();
 
         }
 
@@ -80,20 +82,17 @@ namespace httpserver
         ///adskil opdeler message ved hjælp af indbygget Split metode.
         /// sw.writeline udskriver element '1'  i browseren i dette tilfælde /arg
         /// element 1 hedder Entity body
-
-        private void SendREFile(StreamWriter sw, StreamReader sr)
+        
+        private void SendREFile(string filename, StreamWriter sw)
         {
             try
             {
-                string message = sr.ReadLine();
-                string[] adskil = message.Split(' ');
-                sw.WriteLine(adskil[1]);
 
-                string temppath = RootCatalog + adskil[1];
+                string bla = filename;
 
-                if (File.Exists(temppath))
+                if (File.Exists(filename))
                 {
-                    using (FileStream fs = File.OpenRead(temppath))
+                    using (FileStream fs = File.OpenRead(filename))
                     {
 
 
