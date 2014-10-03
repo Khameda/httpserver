@@ -24,7 +24,7 @@ namespace httpserver
             this.connectionSocket = connectionSocket;  
         }
 
-       //public List<Task> ServerTasks = new List<Task>();
+       public List<Task> ServerTasks = new List<Task>();
 
  
         
@@ -32,7 +32,7 @@ namespace httpserver
         public void SocketService()
         {
 
-            //Task task = Task.Run(() => (connectionSocket));
+           // Task task = Task.Run(() => (connectionSocket));
          //   Task.Run(task);
             /// Netværks stream for vores connectede client som kan bruges til at læse eller skrive til eller fra
             Stream ns = connectionSocket.GetStream();
