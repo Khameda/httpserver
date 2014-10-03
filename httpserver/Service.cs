@@ -24,7 +24,7 @@ namespace httpserver
             this.connectionSocket = connectionSocket;  
         }
 
-       public List<Task> ServerTasks = new List<Task>();
+      // public List<Task> ServerTasks = new List<Task>();
 
  
         

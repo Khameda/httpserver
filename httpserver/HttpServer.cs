@@ -28,6 +28,8 @@ namespace httpserver
             /// Vi åbner forbindelsen
             serverSocket.Start();
 
+            Eloging.Ewriting("Server started succesfully", "Information");
+         
             List<Task> Liste = new List<Task>();
             while (_running)
             {
